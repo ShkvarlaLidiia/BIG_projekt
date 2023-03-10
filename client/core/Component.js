@@ -5,8 +5,8 @@ export class Component {
         this.tagName = tagName;
         this.className = className;
         this.children = children;
-        this.events = events
-        this.attrs = attrs
+        this.events = events;
+        this.attrs = attrs;
     }
 
 
@@ -17,13 +17,18 @@ export class Component {
     
         if (this.children) element.insertAdjacentHTML("beforeend", this.children);
         
-        element.addEventListener("click", this.events);
-
         for (const key in this.events) {
-          const value = this.events[key];
-          element.addEventListener(key, value);
+            const value = this.events[key];
+            element.addEventListener(key, value);
         }
+        for (const key in this.attrs) {
+            const value = this.attrs[key];
+            element.setAttribute(key, value);
+        }
+    
     
         return element;
       }
     }
+
+    // element.addEventListener("click", this.events);

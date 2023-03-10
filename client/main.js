@@ -13,7 +13,6 @@ const header = new Header({
     tagName : "header",
     className : "header",
     children : '<h2>Logo</h2>',
-    events : (e) => getData("http://127.0.0.1:5000/products"),
     }).toHTML();
 
 const nav = new Navigation({
