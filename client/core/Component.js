@@ -21,11 +21,11 @@ export class Component {
             const value = this.events[key];
             element.addEventListener(key, value);
         }
+
         for (const key in this.attrs) {
             const value = this.attrs[key];
             element.setAttribute(key, value);
         }
-    
     
         return element;
       }

@@ -22,7 +22,6 @@ def getData(arr):
 def home():
     return "<h2>Server works!</h2>"
 
-
 @app.route("/products")
 def products():
     print(request.method)
@@ -64,6 +63,23 @@ def products():
         "Bitcoin (BTC) is a form of digital money. It exists on its own network that facilitates secure, online transactions directly between accounts without requiring an intermediary — such as a bank or credit card company — to mediate and validate transactions."
     )
     ]))
+
+class Song:
+    def __init__(self, title, artist, year):
+        self.title = title
+        self.artist = artist
+        self.year = year
+    
+songs = [
+    Song("Sweet Child o' Mine", "Guns N' Roses", 1987),
+    Song("Imagine", "John Lennon", 1971),
+    Song("Thriller", "Michael Jackson", 1982)
+]
+
+@app.route('/playlist')
+def playlist():
+    return jsonify(toJSON(songs))
+
 
 
 # @app.route("/products")

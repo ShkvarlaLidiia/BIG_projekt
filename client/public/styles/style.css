@@ -17,3 +17,19 @@
     justify-content: space-between;
     padding: var(--padding-m);
 }
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--padding-m);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.main {
+    margin: auto;
+    max-width: 800px;
+    padding: var(--padding-l);
+  }
