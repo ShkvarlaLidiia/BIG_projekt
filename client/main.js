@@ -1,5 +1,5 @@
 import { Header } from "./components/Header/Header";
-// import { Navigation } from "./components/Navigation/Navigation";
+import { Navigation } from "./components/Navigation/Navigation";
 import { Main } from "./components/Main/Main";
 import { Footer } from "./components/Footer";
 
@@ -19,20 +19,20 @@ const header = new Header({
 
 // const data = getData("http://127.0.0.1:3333/products", products);
 
-// const nav = new Navigation({
-//     tagName : "nav",
-//     className : "nav",
-//     events : (e) => getData("http://127.0.0.1:5000/products"),
-//     }).toHTML();
+const nav = new Navigation({
+    tagName : "nav",
+    className : "nav",
+    children : '<h3>Navigation</h3>',
+    }).toHTML();
 
 const main = new Main({
     tagName : "main",
     className : "main",
-    children : '<h2>Main</h2>',
+    children : '<h1>Main</h1>',
 
     // children: isLoading ? "..." : products,
     // children : '<h2>Products</h2>',
-    // events : (e) => getData("http://127.0.0.1:5000/products"),
+    events : (e) => getData("http://127.0.0.1:5000/products"),
     }).toHTML();
     
 const footer = new Footer({
@@ -43,3 +43,4 @@ const footer = new Footer({
     }).toHTML();
     
 render("#app", [header, main, footer]);
+render("header", nav)
