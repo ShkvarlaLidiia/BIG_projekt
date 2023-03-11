@@ -1,7 +1,7 @@
 import { Header } from "./components/Header/Header";
 import { Navigation } from "./components/Navigation/Navigation";
 import { Main } from "./components/Main/Main";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/Footer/Footer";
 
 import { render } from "./core/render";
 import { getData } from "./utils/getData";
@@ -32,7 +32,7 @@ const main = new Main({
 
     // children: isLoading ? "..." : products,
     // children : '<h2>Products</h2>',
-    events : (e) => getData("http://127.0.0.1:5000/products"),
+    // events : (e) => getData("http://127.0.0.1:5000/products"),
     }).toHTML();
     
 const footer = new Footer({
