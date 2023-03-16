@@ -55,9 +55,8 @@ btn.addEventListener("click", (e) => {
         async function () {
             const data = await fetch("http://127.0.0.1:5000/");
             const parsedData = await data.json();
-            console.log(parsedData);
+            await console.log(parsedData);
         }
     )
-
-    
-})    
+    ();
+});   

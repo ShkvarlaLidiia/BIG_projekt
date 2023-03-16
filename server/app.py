@@ -119,9 +119,7 @@ def home():
         doc ['_id'] = str(doc['_id'])
         print(doc)
         music.append(doc)
-    return {        
-        "music" : music
-    }
+    return music
       
 if __name__ == "__main__":
     app.run()
