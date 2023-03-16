@@ -9,6 +9,9 @@ import "./public/styles/style.css";
 
 import { Component } from "./core/Component";
 
+
+
+
 // let isLoading = true;
 // const products = [];
 const header = new Header({
@@ -31,9 +34,10 @@ const nav = new Navigation({
 const main = new Main({
     tagName : "main",
     className : "main",
-    children : '<h2>Main</h2>',
+    children : '<button id="get-data">Get data</button><div id="trecks"></div>',
 
-    // '<button id="get-data">Get data</button>'
+    // '<h2>Main</h2>'
+    // '<div id="trecks"></div><button id="get-data">Get data</button>',    
 
     // children: isLoading ? "..." : products,
     // children : '<h2>Products</h2>',
@@ -50,8 +54,12 @@ const footer = new Footer({
 render("#app", [header, main, footer]);
 render("header", nav)
 
+
+
+
 const btn = document.getElementById("get-data");
-const trecs = document.getElementById("trecks");
+const trecks = document.getElementById("trecks");
+
 
 btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -59,24 +67,22 @@ btn.addEventListener("click", (e) => {
     (async function () {
         const data = await fetch("http://127.0.0.1:5000/");
         const parsedData = await data.json();
-        await console.log(parsedData);
+        // await console.log(parsedData);
+        const domArr = await parsedData.map((el) => {
+            return `
+                <h2>
+                    author : ${el.author}
+                </h2>
+                <h2>
+                    name : ${el.name}
+                </h2>
+                <h2>
+                    year : ${el.year}
+                </h2>
+            `;
+        });
+        
+        trecks.insertAdjacentHTML("afterbegin", domArr);
     })();
 });   
 
-
-
-// const domArr = await parsedData.map((el) => {
-//     return `
-//         <h2>
-//             author : ${el.author}
-//         </h2>
-//         <h2>
-//             name : ${el.name}
-//         </h2>
-//         <h2>
-//             year : ${el.year}
-//         </h2>
-//         `;
-//         });
-
-//         trecs.insertAdjacentHTML("afterbegin", domArr);
