@@ -5,8 +5,8 @@ import { Footer } from "./components/Footer/Footer";
 
 import { render } from "./core/render";
 import { getData } from "./utils/getData";
-
 import "./public/styles/style.css";
+
 import { Component } from "./core/Component";
 
 // let isLoading = true;
@@ -17,18 +17,21 @@ const header = new Header({
     children : '<h2>Logo</h2>',
     }).toHTML();
 
-// const data = getData("http://127.0.0.1:3333/products", products);
+// const data = getData("http://127.0.0.1:5000/products", products);
 
 const nav = new Navigation({
     tagName : "nav",
     className : "nav",
-    children : '<h3>Navigation</h3>',
+    children : '<ul><li><a href="#">Catalogs</a></li><li><a href="#">Contacts</a></li><li><a href="#">Login</a></li></ul>'
     }).toHTML();
+
+    //  '<h3>Navigation</h3>',
+
 
 const main = new Main({
     tagName : "main",
     className : "main",
-    children : '<h1>Main</h1>',
+    children : '<button id="get-data">Get data</button>',
 
     // children: isLoading ? "..." : products,
     // children : '<h2>Products</h2>',
@@ -44,3 +47,17 @@ const footer = new Footer({
     
 render("#app", [header, main, footer]);
 render("header", nav)
+
+const btn = document.getElementById("get-data");
+btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    (
+        async function () {
+            const data = await fetch("http://127.0.0.1:5000/");
+            const parsedData = await data.json();
+            console.log(parsedData);
+        }
+    )
+
+    
+})    

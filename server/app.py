@@ -5,6 +5,7 @@ import json
 from utils.toJSON import toJSON
 from model.User.User import User
 from model.Product.Product import Product
+from connection import connection
 
 users = toJSON([
     User("k@.ua", "John", "2323")
@@ -18,9 +19,9 @@ CORS(app)
 def getData(arr):
     return arr
 
-@app.route("/")
-def home():
-    return "<h2>Server works!</h2>"
+# @app.route("/")
+# def home():
+#     return "<h2>Server works!</h2>"
 
 @app.route("/products")
 def products():
@@ -64,21 +65,23 @@ def products():
     )
     ]))
 
-class Song:
-    def __init__(self, title, artist, year):
-        self.title = title
-        self.artist = artist
-        self.year = year
+# class Song:
+#     def __init__(self, title, artist, year):
+#         self.title = title
+#         self.artist = artist
+#         self.year = year
     
-songs = [
-    Song("Sweet Child o' Mine", "Guns N' Roses", 1987),
-    Song("Imagine", "John Lennon", 1971),
-    Song("Thriller", "Michael Jackson", 1982)
-]
+# songs = [
+#     Song("Sweet Child o' Mine", "Guns N' Roses", 1987),
+#     Song("Imagine", "John Lennon", 1971),
+#     Song("Thriller", "Michael Jackson", 1982)
+# ]
 
-@app.route('/playlist')
-def playlist():
-    return jsonify(toJSON(songs))
+# @app.route('/playlist')
+# def playlist():
+#     return jsonify(toJSON(songs))
+
+
 
 
 
@@ -93,7 +96,33 @@ def playlist():
 # @app.route("/products")
 # def users():
 #     return
-   
+
+treck = {
+    "author" : "John Lennon",
+    "name" : "Imagine", 
+    "year" : "1971"
+}
+
+def get_data():
+    data = connection()
+    data_collection = data['music']
+    
+    return data_collection.find()
+
+@app.route("/")
+def home():
+    data = get_data()    
+    # music = [doc for doc in data]
+    music = []
+    
+    for doc in data:
+        doc ['_id'] = str(doc['_id'])
+        print(doc)
+        music.append(doc)
+    return {        
+        "music" : music
+    }
+      
 if __name__ == "__main__":
     app.run()
 
