@@ -117,7 +117,7 @@ def home():
     
     for doc in data:
         doc ['_id'] = str(doc['_id'])
-        print(doc)
+        # print(doc)
         music.append(doc)
     return music
       

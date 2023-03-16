@@ -31,7 +31,9 @@ const nav = new Navigation({
 const main = new Main({
     tagName : "main",
     className : "main",
-    children : '<button id="get-data">Get data</button>',
+    children : '<h2>Main</h2>',
+
+    // '<button id="get-data">Get data</button>'
 
     // children: isLoading ? "..." : products,
     // children : '<h2>Products</h2>',
@@ -49,14 +51,32 @@ render("#app", [header, main, footer]);
 render("header", nav)
 
 const btn = document.getElementById("get-data");
+const trecs = document.getElementById("trecks");
+
 btn.addEventListener("click", (e) => {
     e.preventDefault();
-    (
-        async function () {
-            const data = await fetch("http://127.0.0.1:5000/");
-            const parsedData = await data.json();
-            await console.log(parsedData);
-        }
-    )
-    ();
+
+    (async function () {
+        const data = await fetch("http://127.0.0.1:5000/");
+        const parsedData = await data.json();
+        await console.log(parsedData);
+    })();
 });   
+
+
+
+// const domArr = await parsedData.map((el) => {
+//     return `
+//         <h2>
+//             author : ${el.author}
+//         </h2>
+//         <h2>
+//             name : ${el.name}
+//         </h2>
+//         <h2>
+//             year : ${el.year}
+//         </h2>
+//         `;
+//         });
+
+//         trecs.insertAdjacentHTML("afterbegin", domArr);
